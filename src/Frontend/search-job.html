@@ -1,0 +1,23 @@
+<!-- search-job.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Search Job</title>
+  <script>
+    async function searchJob() {
+        const id = document.getElementById('jobId').value;
+        const response = await fetch(`http://localhost:8080/searchjob/${id}`);
+        const job = await response.json();
+        document.getElementById('result').innerText = job ? `${job.id} - ${job.name} (${job.designation})` : 'Not Found';
+    }
+  </script>
+</head>
+<body>
+<h1>Search Job by ID</h1>
+<input type="number" id="jobId" placeholder="Enter Job ID">
+<button onclick="searchJob()">Search</button>
+<div id="result"></div>
+</body>
+</html>

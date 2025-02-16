@@ -1,0 +1,21 @@
+<!-- delete-job.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Delete Job</title>
+  <script>
+    async function deleteJob() {
+        const id = document.getElementById('jobId').value;
+        await fetch(`http://localhost:8080/deletejob/${id}`, { method: 'DELETE' });
+        alert('Job deleted');
+    }
+  </script>
+</head>
+<body>
+<h1>Delete Job</h1>
+<input type="number" id="jobId" placeholder="Enter Job ID">
+<button onclick="deleteJob()">Delete</button>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>All Jobs</title>
+</head>
+<body>
+<h2>All Jobs</h2>
+<button onclick="fetchJobs()">Load Jobs</button>
+<ul id="jobList"></ul>
+
+<script>
+  async function fetchJobs() {
+      try {
+          const response = await fetch("http://localhost:8080/getjob");
+          const jobs = await response.json();
+
+          const jobList = document.getElementById("jobList");
+          jobList.innerHTML = "";
+
+          jobs.forEach(job => {
+              const li = document.createElement("li");
+              li.textContent = `${job.id} - ${job.name} - ${job.designation} - ${job.domain} - Salary: ${job.salary} - Experience: ${job.experience} years`;
+              jobList.appendChild(li);
+          });
+      } catch (error) {
+          console.error("Error fetching jobs:", error);
+      }
+  }
+</script>
+</body>
+</html>
